@@ -1,0 +1,107 @@
+<!-- views/pages/rtnetwork.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+	<style type="text/css">
+		.panel-heading h4 .accordion-toggle:after {
+		    /* symbol for "opening" panels */
+		    font-family: 'Glyphicons Halflings';  
+		    content: "\e114";    
+		    float: right;        
+		    color: gray;        
+		    overflow: no-display;
+		}
+		.panel-heading h4 .accordion-toggle.collapsed:after {
+		    /* symbol for "collapsed" panels */
+		    content: "\e080";    
+		}
+		a.accordion-toggle{
+		    text-decoration: none;
+		}
+		.thumbnail {
+			height: 560px;
+			width: 780px;
+		}
+		.caption {
+			margin-top: -10px;
+		}
+		#userCard {
+			margin-top: -20px;
+		}
+		main {
+			margin-top: -20px;
+		}
+		#spinner {
+			margin-top: 183px;
+			font-size: 5em;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<header>
+		<% include ../partials/header %></%>
+	</header>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<script type="text/javascript" src="/js/d3.layout.cloud.js"></script>
+	<script type="text/javascript" src="/js/spin.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/rtnetwork.js"></script>
+		<main>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="panel panel-primary">
+					    <div class="panel-heading">
+					    	<h4 class="panel-title">
+						    	<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						    		Available Topics
+						    	</a>
+					    	</h4>
+					    </div>
+					    <div id="collapseOne" class="panel-collapse collapse">
+					      	<div class="panel-body">
+							    <table class="table">
+							    	<tbody>
+							    		<% availableTopics.forEach(function(topic) { %>
+							    		<tr>
+							    			<td>
+							    				<a href="/rtnetwork?coll=<%= topic.slice(1).replace(/ /g, "") %>">
+							    					<%= topic %>
+							    				</a>
+							    			</td>
+							    		</tr>
+							    		<% }) %>
+							    	</tbody>
+							    </table>
+					      	</div>
+					    </div>
+					</div>
+					<div id="userCard"></div>
+				</div>
+				<div class="col-md-8 thumbnail text-center">
+					<div class="caption">
+						<h4>Current Topic: #<%= currentTopic %></h3>
+					</div>
+					<div id="RTNetwork"><i id="spinner" class="fa fa-spinner fa-spin fa-align-center"></i></div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</main>
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	<script>
+		$("#userCard").on('click', '.follow', function(){
+		    $(this).css('background-color', '#34CF7A');
+		    $(this).html('<div class="icon-ok"></div> Following');
+		});
+	</script>
+</body>
+</html>

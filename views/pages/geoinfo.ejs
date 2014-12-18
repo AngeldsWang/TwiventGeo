@@ -1,0 +1,101 @@
+<!-- views/pages/geoinfo.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+	<style type="text/css">
+		.panel-heading h4 .accordion-toggle:after {
+		    /* symbol for "opening" panels */
+		    font-family: 'Glyphicons Halflings';  
+		    content: "\e114";    
+		    float: right;        
+		    color: gray;        
+		    overflow: no-display;
+		}
+		.panel-heading h4 .accordion-toggle.collapsed:after {
+		    /* symbol for "collapsed" panels */
+		    content: "\e080";    
+		}
+		a.accordion-toggle{
+		    text-decoration: none;
+		}
+		.thumbnail {
+			height: 450px;
+			width: 550px;
+		}
+		.caption {
+			margin-top: -10px;
+		}
+		#userCard {
+			margin-top: -20px;
+		}
+		main {
+			margin-top: -30px;
+		}
+		#marker {
+			height: 440px;
+			width: 540px;
+		}
+		#heat {
+			height: 440px;
+			width: 540px;
+		}
+		#map1 {
+			margin-left: -15px;
+		}
+		#map2 {
+			margin-left: 85px;
+		}
+		#info {
+		    margin-top: -10px;
+		}
+		#spinner1 {
+			margin-top: 187px;
+			font-size: 5em;
+		}
+		#spinner2 {
+			margin-top: 187px;
+			font-size: 5em;
+		}
+	</style>
+	<link rel="stylesheet" href="/css/leaflet.css" />
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<% include ../partials/header %></%>
+	</header>
+		<main>
+		<div class="container">
+			<div class="row">
+				<div class="btn-group">
+					<% availableTopics.forEach(function(topic) { %>
+				  	<a href="/geoinfo?coll=<%= topic.slice(1).replace(/ /g, "") + "_geoinfo" %>" class="btn btn-info"><%= topic %></a>
+				  	<% }) %>
+				</div>
+			</div><br/>
+			<div class="row">
+				<div id="map1" class="col-md-6 thumbnail text-center">
+					<div id="marker"><i id="spinner1" class="fa fa-spinner fa-spin fa-align-center"></i></div>
+				</div>
+				<div id="map2" class="col-md-6 thumbnail text-center">
+					<div id="heat"><i id="spinner2" class="fa fa-spinner fa-spin fa-align-center"></i></div>
+				</div>
+			</div>
+			<div class="row">
+				<button id="info" type="button" class="btn btn-default btn-lg btn-block disabled">#<%= currentTopic.split("_")[0] %></button>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	<script type="text/javascript" src="/js/d3.layout.cloud.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src='/js/leaflet-heat.js'></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/geoinfo.js"></script>
+</body>
+</html>

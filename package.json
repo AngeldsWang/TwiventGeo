@@ -1,0 +1,30 @@
+{
+  "name": "TwiventGeo",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "express": "^4.10.6",
+    "mongodb": "^1.4.23",
+    "socket.io": "^1.2.1"
+  },
+  "version": "0.1.1",
+  "description": "Twitter event tracking and geo information visualization",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zhenjun Wang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AngeldsWang/TwiventGeo.git"
+  },
+  "keywords": [
+    "trends",
+    "geo"
+  ],
+  "bugs": {
+    "url": "https://github.com/AngeldsWang/TwiventGeo/issues"
+  },
+  "homepage": "https://github.com/AngeldsWang/TwiventGeo"
+}
