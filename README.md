@@ -18,3 +18,6 @@ to model it.
 * Leaflet
 * Leaflet-heat
 * Bootstrap 3.x
+
+###Deploy
+For deploying this project on some cloud application platforms, like [Heroku](https://www.heroku.com/). you can follow [this guide](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction). For restoring mongodb in cloud, [this article](https://devcenter.heroku.com/articles/mongolab) is helpful. *Don't forget to change your client socket host to your application host.*
